@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Hostel vacating guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&family=Pacifico&display=swap" rel="stylesheet">
+<style>
+:root{
+  box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+  --bg:#fff8fb;--card:#fff;--ink:#6b3b5e;--muted:#a67f99;--line:#fde0ee;
+  --pink:#ff8fbf;--pink-soft:#ffeaf3;--lilac:#c9a8ff;--lilac-soft:#f6efff;--peach:#ffb78f;--peach-soft:#fff1e8;--mint:#7fdcb8;--mint-soft:#e8faf2;--sun-soft:#fff7dc;--sun-ink:#b07a2a;
+  --shadow:0 4px 0 #fde0ee;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){--bg:#24121f;--card:#331a2d;--ink:#ffeaf4;--muted:#d6a3c0;--line:#512a45;--pink:#ff7ab6;--pink-soft:#4d2340;--lilac:#c999ff;--lilac-soft:#3d2850;--peach-soft:#4a2f28;--mint-soft:#1f3b34;--sun-soft:#3a2f1c;--sun-ink:#ffc978;--shadow:0 4px 0 #1c0d17}
+}
+:root[data-theme="dark"]{--bg:#24121f;--card:#331a2d;--ink:#ffeaf4;--muted:#d6a3c0;--line:#512a45;--pink:#ff7ab6;--pink-soft:#4d2340;--lilac:#c999ff;--lilac-soft:#3d2850;--peach-soft:#4a2f28;--mint-soft:#1f3b34;--sun-soft:#3a2f1c;--sun-ink:#ffc978;--shadow:0 4px 0 #1c0d17}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background-color:var(--bg);background-image:radial-gradient(var(--line) 1.6px,transparent 1.8px);background-size:22px 22px;color:var(--ink);font-family:'Quicksand',system-ui,sans-serif;font-weight:600;line-height:1.55}
+main{max-width:640px;margin:0 auto;padding:28px 16px 60px}
+.hero{background:var(--card);border:2px solid var(--line);border-radius:32px;padding:26px 24px;box-shadow:var(--shadow);display:flex;align-items:center;gap:20px;justify-content:space-between}
+.hero>div:first-child{min-width:0}
+.hero h1{margin:0 0 6px;font-family:'Pacifico',cursive;font-weight:400;font-size:27px;line-height:1.35;color:var(--pink)}
+.hero p{margin:0;color:var(--muted);font-size:15px}
+.mascot{display:flex;align-items:center;gap:8px;margin-top:16px}
+.cloud{flex:none;animation:bob 2.6s ease-in-out infinite}
+.bubble{position:relative;background:var(--pink-soft);color:var(--pink);font-size:13px;font-weight:700;padding:7px 14px;border-radius:16px;margin-left:6px}
+.bubble::before{content:"";position:absolute;left:-6px;top:50%;margin-top:-6px;border:6px solid transparent;border-left:0;border-right-color:var(--pink-soft)}
+.ring{flex:none;position:relative;width:88px;height:88px}
+.ring svg{transform:rotate(-90deg)}
+.ring circle{fill:none;stroke-width:10}
+.ring .bg{stroke:var(--pink-soft)}
+.ring .fg{stroke:var(--pink);stroke-linecap:round;stroke-dasharray:226.2;stroke-dashoffset:226.2;transition:stroke-dashoffset .4s}
+.ring .lbl{position:absolute;inset:0;display:grid;place-items:center;text-align:center;font-weight:700;font-size:18px;line-height:1.1}
+.ring .lbl small{display:block;font-size:11px;color:var(--muted)}
+.hero.done .fg{stroke:var(--lilac)}
+h2{display:inline-block;font-size:14px;font-weight:700;color:var(--pink);background:var(--pink-soft);padding:5px 18px;border-radius:99px;margin:32px 6px 14px}
+ol{list-style:none;margin:0;padding:0}
+li{position:relative;padding-left:54px;padding-bottom:12px}
+li::before{content:"";position:absolute;left:19px;top:46px;bottom:0;width:2px;background:repeating-linear-gradient(var(--line) 0 6px,transparent 6px 10px)}
+li:last-child::before{display:none}
+li.on::before{background:repeating-linear-gradient(var(--lilac) 0 6px,transparent 6px 10px)}
+.step{display:block;cursor:pointer}
+.step input{position:absolute;opacity:0;pointer-events:none}
+.dot{position:absolute;left:0;top:6px;width:40px;height:40px;border-radius:50%;background:var(--card);border:3px solid var(--c);color:var(--c);display:grid;place-items:center;font-weight:700;font-size:15px;transition:all .2s}
+li:nth-child(4n+1){--c:#ffa6c9;--cs:var(--pink-soft)}
+li:nth-child(4n+2){--c:#c9a8ff;--cs:var(--lilac-soft)}
+li:nth-child(4n+3){--c:#ffb78f;--cs:var(--peach-soft)}
+li:nth-child(4n){--c:#7fdcb8;--cs:var(--mint-soft)}
+.dot svg{display:none;width:20px;height:20px;fill:#fff}
+.card{display:block;background:var(--card);border:2px solid var(--line);border-radius:24px;padding:14px 18px;box-shadow:var(--shadow);transition:background .2s,border-color .2s,transform .2s}
+.card b{display:block;font-size:16px;font-weight:700;line-height:1.35}
+.card .d{display:block;color:var(--muted);font-size:14px;margin-top:2px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.chip{font-size:12.5px;font-weight:700;padding:3px 12px;border-radius:99px;background:var(--cs);color:var(--ink)}
+.chip.w{background:var(--sun-soft);color:var(--sun-ink)}
+.step:hover .card{border-color:var(--c);transform:translateY(-2px)}
+.step input:focus-visible ~ .card{outline:3px solid var(--pink);outline-offset:2px}
+.step input:checked ~ .dot{background:var(--c);animation:pop .4s}
+.step input:checked ~ .dot svg{display:block}
+.step input:checked ~ .dot .num{display:none}
+.step input:checked ~ .card{background:var(--cs);border-color:var(--c)}
+.step input:checked ~ .card b{opacity:.6;text-decoration:line-through}
+.notes{display:grid;gap:12px}
+.note{display:flex;gap:14px;align-items:flex-start;background:var(--card);border:2px solid var(--line);border-radius:24px;padding:14px 16px;box-shadow:var(--shadow)}
+.ic{flex:none;width:38px;height:38px;border-radius:13px;display:grid;place-items:center;background:var(--bgc);color:var(--fgc)}
+.ic svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.note b{display:block;font-size:15px;font-weight:700}
+.note .t{display:block;color:var(--muted);font-size:14.5px}
+.n1{--bgc:var(--sun-soft);--fgc:var(--sun-ink)}.n2{--bgc:var(--lilac-soft);--fgc:#9b73e6}.n3{--bgc:var(--pink-soft);--fgc:var(--pink)}.n4{--bgc:var(--mint-soft);--fgc:#35a982}
+.row{display:flex;justify-content:center;margin-top:18px}
+button{font:inherit;font-weight:700;font-size:13px;background:var(--card);color:var(--muted);border:2px solid var(--line);border-radius:99px;padding:7px 18px;cursor:pointer}
+button:hover{color:var(--ink);border-color:var(--pink)}
+button:focus-visible{outline:3px solid var(--pink);outline-offset:2px}
+.foot{text-align:center;color:var(--muted);font-size:13px;margin-top:28px}
+.fx{position:fixed;top:-30px;z-index:50;pointer-events:none;animation:fall 3s linear forwards}
+@keyframes bob{50%{transform:translateY(-3px)}}
+@keyframes pop{40%{transform:scale(1.25)}}
+@keyframes fall{to{transform:translateY(105vh) rotate(40deg);opacity:0}}
+@media (max-width:420px){.hero{flex-direction:column-reverse;align-items:flex-start}.hero h1{font-size:24px}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<main>
+  <section class="hero" id="hero">
+    <div>
+      <h1>Hostel vacating guide</h1>
+      <p>12 steps, one order. Tick them off as you go.</p>
+      <div class="mascot">
+        <svg class="cloud" width="64" height="48" viewBox="0 0 64 48" aria-hidden="true">
+          <g fill="var(--lilac-soft)"><circle cx="20" cy="28" r="13"/><circle cx="34" cy="20" r="15"/><circle cx="47" cy="29" r="12"/><rect x="20" y="28" width="28" height="13"/></g>
+          <circle cx="27" cy="29" r="2.2" fill="var(--ink)"/><circle cx="41" cy="29" r="2.2" fill="var(--ink)"/>
+          <ellipse cx="22" cy="34" rx="3.5" ry="2.2" fill="var(--pink)" opacity=".55"/><ellipse cx="46" cy="34" rx="3.5" ry="2.2" fill="var(--pink)" opacity=".55"/>
+          <path d="M30 33.5q4 3.6 8 0" fill="none" stroke="var(--ink)" stroke-width="1.8" stroke-linecap="round"/>
+        </svg>
+        <span class="bubble" id="mood">let's get started!</span>
+      </div>
+    </div>
+    <div class="ring" role="img" aria-label="Progress">
+      <svg width="88" height="88" viewBox="0 0 88 88"><circle class="bg" cx="44" cy="44" r="36"/><circle class="fg" id="fg" cx="44" cy="44" r="36"/></svg>
+      <div class="lbl"><div><span id="count">0</span>/12<small>done</small></div></div>
+    </div>
+  </section>
+
+  <h2>Steps, in order</h2>
+  <ol id="steps"></ol>
+  <div class="row"><button id="reset" type="button">Start over</button></div>
+
+  <h2>Good to know</h2>
+  <div class="notes">
+    <div class="note"><span class="ic n1"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><div><b>Get signatures early</b><span class="t">The HOD is very busy after FAT or near the end of term. You can collect signatures early, but you can only upload to VTOP 2-3 days before you vacate.</span></div></div>
+    <div class="note"><span class="ic n2"><svg viewBox="0 0 24 24"><path d="M8 6h12M8 12h12M8 18h12"/><path d="M4 6h.01M4 12h.01M4 18h.01"/></svg></span><div><b>Order matters</b><span class="t">Everything happens in the order above. You can't mix up the steps.</span></div></div>
+    <div class="note"><span class="ic n3"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M4 7l8 6 8-6"/></svg></span><div><b>Leaving campus afterwards</b><span class="t">Once vacating is complete, you'll need a letter from the warden to go out of campus.</span></div></div>
+    <div class="note"><span class="ic n4"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.7.4-1 .9-1 1.7M12 17h.01"/></svg></span><div><b>Non-CDC students</b><span class="t">Instead of the congratulations mail, we assume the internship approval on VTOP works. We're not sure how the rest of the non-CDC process goes, so good luck!</span></div></div>
+  </div>
+  <p class="foot">Bored and Frustrated</p>
+</main>
+
+<script>
+const steps=[
+ {t:"Download the form from VTOP",d:"The hostel vacating form is on the VTOP homepage."},
+ {t:"Fill in the details",d:"CDC internship: your internal guide is also your proctor. Otherwise, use the guide you chose."},
+ {t:"Print the form",d:"Get a clean printout of the filled form."},
+ {t:"Get signatures from your guide and proctor",d:"Both need to sign the printout."},
+ {t:"Find your course coordinator",d:"Visit the HOD area on the 3rd floor to find out who it is."},
+ {t:"Get your coordinator's signature",d:"Carry three printouts:",c:["The signed hostel vacating form","Congratulations mail","NeoPAT profile page (name + NeoID)"]},
+ {t:"Get the HOD's signature and stamp",d:"Go early if you can. See the note below."},
+ {t:"Upload the form on VTOP",d:"Under Hostel Vacating. Only possible 2-3 days before you vacate."},
+ {t:"Wait for DSW approval",d:"Urgent? Visit them once in person."},
+ {t:"Visit the mess supervisor, then the warden, then the hostel office",d:"In that order."},
+ {t:"Go to MB G014",d:"Submit your regular ID card and raise a query for the dayboarder one.",w:["New ID card costs Rs. 240"]},
+ {t:"Collect your new ID at the CTS office",d:"That's it. You're done!"}
+];
+const HEART='M12 21s-7.5-4.6-9.5-9.2C1 8 3.2 4.5 6.6 4.5c2 0 3.6 1.1 5.4 3 1.8-1.9 3.4-3 5.4-3 3.4 0 5.6 3.5 4.1 7.3C19.5 16.4 12 21 12 21z';
+const check='<svg viewBox="0 0 24 24"><path d="'+HEART+'"/></svg>';
+const KEY="vacate-hostel-progress";
+let saved=[];try{saved=JSON.parse(localStorage.getItem(KEY)||"[]")}catch(e){saved=[]}
+const ol=document.getElementById("steps");
+steps.forEach((s,i)=>{
+  const chips=(s.c||[]).map(x=>`<span class="chip">${x}</span>`).join("")+(s.w||[]).map(x=>`<span class="chip w">${x}</span>`).join("");
+  const li=document.createElement("li");
+  li.innerHTML=`<label class="step"><input type="checkbox"><span class="dot"><span class="num">${i+1}</span>${check}</span><span class="card"><b>${s.t}</b><span class="d">${s.d}</span>${chips?`<span class="chips">${chips}</span>`:""}</span></label>`;
+  ol.appendChild(li);
+});
+const boxes=[...ol.querySelectorAll("input")];
+boxes.forEach((b,i)=>{b.checked=!!saved[i];b.addEventListener("change",update)});
+function confetti(){
+  if(matchMedia('(prefers-reduced-motion:reduce)').matches)return;
+  const cols=['#ff8fbf','#c9a8ff','#ffb78f','#7fdcb8'];
+  for(let k=0;k<26;k++){
+    const f=document.createElement('span');f.className='fx';
+    const z=14+Math.random()*14;
+    f.innerHTML=`<svg width="${z}" height="${z}" viewBox="0 0 24 24" fill="${cols[k%4]}"><path d="${HEART}"/></svg>`;
+    f.style.left=Math.random()*94+'vw';f.style.animationDelay=Math.random()*1.2+'s';
+    document.body.appendChild(f);setTimeout(()=>f.remove(),5000);
+  }
+}
+function update(){
+  const done=boxes.filter(b=>b.checked).length;
+  document.getElementById("count").textContent=done;
+  document.getElementById("fg").style.strokeDashoffset=226.2*(1-done/12);
+  document.getElementById("hero").classList.toggle("done",done===12);
+  document.getElementById("mood").textContent=done===0?"let's get started!":done<4?"cute start, keep going!":done<8?"looking good, bestie":done<12?"almost free!":"all done, you did it!";
+  boxes.forEach(b=>b.closest("li").classList.toggle("on",b.checked));
+  if(done===12&&!window.__c){window.__c=1;confetti()}else if(done<12){window.__c=0}
+  try{localStorage.setItem(KEY,JSON.stringify(boxes.map(b=>b.checked)))}catch(e){}
+}
+document.getElementById("reset").addEventListener("click",()=>{boxes.forEach(b=>b.checked=false);update()});
+update();
+</script>
+</body>
+</html>
