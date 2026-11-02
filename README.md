@@ -1,0 +1,1 @@
+# hostel-vacating-made-simpler-cutesy-version
